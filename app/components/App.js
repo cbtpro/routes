@@ -1,14 +1,7 @@
-import React from 'react';
-import { RouteHandler } from 'react-router';
+import React from 'react'
 
-class App extends React.Component {
+export default React.createClass({
 	render() {
-		return (
-			<div>
-				<RouteHandler />
-			</div>
-		);
+		return <div>Hello, React Router!</div>
 	}
-}
-
-export default App;
+})

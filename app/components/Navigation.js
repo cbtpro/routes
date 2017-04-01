@@ -1,4 +1,5 @@
 import React from 'react';
+import { Router, Route, hashHistory } from 'react-router'
 
 class Navigation extends React.Component {
 	render() {
