@@ -4,7 +4,7 @@ import App from './components/App';
 import Home from './components/Home';
 
 export default (
-	<Route component={App}>
-		<Route path='/' component={Home} />
+	<Route handler={App}>
+		<Route path='/' handler={Home} />
 	</Route>
 );

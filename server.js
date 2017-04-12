@@ -1,6 +1,5 @@
 var swig  = require('swig');
 var React = require('react');
-import ReactDOMServer from 'react-dom/server';
 var Router = require('react-router');
 var routes = require('./app/routes');
 
@@ -26,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use((req, res) => {
 	Router.run(routes, req.path, Handler => {
 		debugger;
-		var html = ReactDOMServer.renderToString(React.createElement(Handler));
+		var html = React.renderToString(React.createElement(Handler));
 		var page = swig.renderFile('views/index.html', { html: html });
 		res.send(page);
 	});
