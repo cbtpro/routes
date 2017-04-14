@@ -31,6 +31,24 @@ app.use((req, res) => {
 	});
 });
 
-app.listen(app.get('port'), () => {
-	console.log(`Server running on port ${app.get('port')}/`);
+/**
+ * Socket.io stuff.
+ */
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+var onlineUsers = 0;
+
+io.sockets.on('connection', function(socket) {
+  onlineUsers++;
+
+  io.sockets.emit('onlineUsers', { onlineUsers: onlineUsers });
+
+  socket.on('disconnect', function() {
+    onlineUsers--;
+    io.sockets.emit('onlineUsers', { onlineUsers: onlineUsers });
+  });
+});
+
+server.listen(app.get('port'), function() {
+  console.log('Express server listening on port ' + app.get('port'));
 });
